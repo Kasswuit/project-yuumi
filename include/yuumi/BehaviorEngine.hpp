@@ -12,7 +12,7 @@ public:
 	const PetState& state() const;
 
 	void update(std::chrono::duration<double> elapsed);
-	void feed();
+	void feed(const Food& food);
 	bool play();
 	void rest();
 

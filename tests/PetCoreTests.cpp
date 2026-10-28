@@ -17,7 +17,7 @@ int main() {
         return 1;
     }
 
-    pet.feed();
+    pet.feed(yuumi::availableFoods().front());
     if (pet.state().hunger >= initialHunger) {
         return 2;
     }

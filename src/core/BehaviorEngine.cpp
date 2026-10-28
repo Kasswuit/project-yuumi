@@ -13,8 +13,8 @@ void BehaviorEngine::update(std::chrono::duration<double> elapsed) {
 	pet_.update(elapsed);
 }
 
-void BehaviorEngine::feed() {
-	pet_.feed();
+void BehaviorEngine::feed(const Food& food) {
+	pet_.feed(food);
 }
 
 bool BehaviorEngine::play() {

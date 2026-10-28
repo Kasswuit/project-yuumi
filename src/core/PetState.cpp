@@ -12,6 +12,16 @@ double boundedStat(double value) {
 
 }  // namespace
 
+const std::vector<Food>& availableFoods() {
+	static const std::vector<Food> foods = {
+		{"Fish", -30.0, 4.0, 0.0},
+		{"Cake", -15.0, 15.0, -5.0},
+		{"Salad", -20.0, -3.0, 8.0},
+		{"Milk", -10.0, 6.0, 4.0},
+	};
+	return foods;
+}
+
 void PetState::update(std::chrono::duration<double> elapsed) {
 	const double minutes = std::max(0.0, elapsed.count()) / 60.0;
 	hunger = boundedStat(hunger + minutes * 0.5);
@@ -21,9 +31,10 @@ void PetState::update(std::chrono::duration<double> elapsed) {
 	happiness = boundedStat(happiness - minutes * happinessLoss);
 }
 
-void PetState::feed() {
-	hunger = std::max(0.0, hunger - 30.0);
-	happiness = std::min(100.0, happiness + 4.0);
+void PetState::feed(const Food& food) {
+	hunger = boundedStat(hunger + food.hunger);
+	happiness = boundedStat(happiness + food.happiness);
+	energy = boundedStat(energy + food.energy);
 }
 
 bool PetState::play() {
