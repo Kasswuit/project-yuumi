@@ -1,4 +1,5 @@
 #include "yuumi/BehaviorEngine.hpp"
+#include "yuumi/ui/Screen.hpp"
 
 #include <chrono>
 #include <cmath>
@@ -47,4 +48,21 @@ int main() {
         return 6;
     }
     std::remove(saveFile);
+
+    yuumi::ui::Screen screen(2, 10);
+    screen.put(0, 0, "hi");
+    if (screen.diff().empty()) {
+        return 7;
+    }
+    screen.clear();
+    screen.put(0, 0, "hi");
+    if (!screen.diff().empty()) {
+        return 8;
+    }
+    screen.clear();
+    screen.put(0, 0, "ho");
+    const std::string update = screen.diff();
+    if (update.find('o') == std::string::npos || update.find('h') != std::string::npos) {
+        return 9;
+    }
 }

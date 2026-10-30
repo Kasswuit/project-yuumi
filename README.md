@@ -12,13 +12,16 @@ checks core behavior and save/load handling.
 
 ## Play
 
-Run the `yuumi_pet` executable from the project directory. Commands are:
+Run the `yuumi_pet` executable from the project directory. It draws a live,
+fixed-layout screen (animation, stat bars, message line) that updates in place.
+Keys:
 
-- `feed` to reduce hunger
-- `play` to increase happiness at the cost of energy and hunger
-- `rest` to recover energy
-- `save [file]` and `load [file]` to persist the pet (defaults to `yuumi.sav`)
-- `help` and `quit`
+- `f` opens a food menu; press its number to feed
+- `p` to play (costs energy and hunger)
+- `r` to rest
+- `s` / `l` to save / load the pet (`yuumi.sav`)
+- `q` or Ctrl+C to quit
 
-Needs change while the game is running. The save file is versioned so its format
-can evolve without tying the core to a display or hardware dependency.
+Needs change in real time. Pet rules live in the core, `ui/Screen` is a fixed
+character grid (the part an LCD driver would replace), and `platform/Terminal`
+handles raw keys and the alternate screen.

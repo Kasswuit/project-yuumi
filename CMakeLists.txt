@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 3.16)
 project(YuumiPet VERSION 0.1.0 LANGUAGES CXX)
 
 add_executable(yuumi_pet
-	src/main.cpp
+src/desktop/main.cpp
+        src/platform/Terminal.cpp
+        src/ui/Screen.cpp
 	src/core/BehaviorEngine.cpp
 	src/core/PetState.cpp
 )
@@ -15,6 +17,7 @@ include(CTest)
 if(BUILD_TESTING)
 	add_executable(yuumi_pet_tests
 		tests/PetCoreTests.cpp
+		src/ui/Screen.cpp
 		src/core/BehaviorEngine.cpp
 		src/core/PetState.cpp
 	)
